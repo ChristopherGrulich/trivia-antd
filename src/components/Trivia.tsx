@@ -7,6 +7,7 @@ import ReactConfetti from "react-confetti";
 import { trackPromise, usePromiseTracker } from "react-promise-tracker";
 import GameStats from "./GameStats";
 import {CategoryProps} from "../utility/types"
+import { Col, Radio, Row } from "antd";
 
 export const Trivia: React.FC<CategoryProps> = (props: CategoryProps) => {
   const { promiseInProgress } = usePromiseTracker();
@@ -63,7 +64,6 @@ export const Trivia: React.FC<CategoryProps> = (props: CategoryProps) => {
   //
 
   function onClick(answerid, question) {
-    console.log(gameData.length);
     setGameData((prevData) => {
       return prevData?.map((pam) => {
         const diffData = pam?.answerObjects?.map((ansObj) => {
@@ -165,7 +165,6 @@ export const Trivia: React.FC<CategoryProps> = (props: CategoryProps) => {
 
 
 
-
   const gameElements = gameData?.map((trivia) => {
     return (
       <div className="game-container" key={nanoid()}>
@@ -173,23 +172,30 @@ export const Trivia: React.FC<CategoryProps> = (props: CategoryProps) => {
           <Question question={trivia.question} />
         </div>
         <div className="answer-container">
+
+          <Radio.Group
+          name={trivia.question}
+          >
+          <Row justify="space-evenly">
+
           {trivia?.answerObjects?.map((innerTrivia) => {
             return (
-              <div>
                 <Answer
                   key={nanoid()}
                   answer={innerTrivia.answer}
-                  answerid={innerTrivia.answerid}
                   onClick={() => onClick(innerTrivia.answerid, trivia.question)}
                   toggled={innerTrivia.toggled}
                   isCorrect={innerTrivia.isCorrect}
                   gameOver={endGame}
                   question={trivia.question}
                 />
-              </div>
+                
             );
           })}
-        </div>
+          </Row>
+          </Radio.Group>
+          
+          </div>
 
         {gameStage === 1 && (
           <div className="correct-answer">

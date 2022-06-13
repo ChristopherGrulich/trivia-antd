@@ -5,14 +5,6 @@ body {
   margin: 0;
 }
 
-/* .bg-image1 {
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  margin-left: auto;
-  width: 280px;
-} */
-
 .container {
   background-color: #fff;
   height: auto;
@@ -21,11 +13,10 @@ body {
 }
 
 .game-container {
-  margin: 20px;
+  margin: 25px;
 }
 
 .stats-container {
-  height: auto;
   position: relative;
   margin: 10px auto;
   width: 330px;
@@ -35,12 +26,9 @@ body {
   font-weight: 500;
   font-size: 15px;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  line-height: 1px;
   border: 2px solid #0066aa;
   border-radius: 12px;
+  padding: 5px;
 }
 
 .header {
@@ -73,6 +61,10 @@ body {
   padding-bottom: 10px;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  margin: 0 120px;
+  text-align: center;
+  
 }
 
 /* .category-choice select {
@@ -117,33 +109,37 @@ body {
   padding: 0 10px;
 }
 
+/* label.ant-radio-button-wrapper {
+  background-color: brown;
+} */
+
 .answer-container {
-  display: flex;
+  /* display: flex;
   justify-content: center;
-  align-content: center;
-  gap: 20px;
-  margin-top: 5px;
-  margin-bottom: 15px;
+  align-content: center; 
+  gap: 20px; */
+  margin-top: 10px;  
+  margin-bottom: 20px;
 }
 
-.answer-box {
+/* .answer-box {
   display: grid;
   grid-template: auto auto / repeat(5, 1fr);
   margin: 20px;
-}
+} */
 
 .correct-answer {
   display: flex;
   justify-content: center;
   position: relative;
-  top: -15px;
+  font-weight: 500;
   margin: -20px;
-  font-weight: 400;
+  padding: 15px;
 }
 
 /* Start radio mods */
 
-.answer-radio label {
+/* .answer-radio label {
   display: flex;
   justify-content: center;
   background-color: rgb(199, 199, 199);
@@ -166,11 +162,11 @@ body {
 
 .answer-radio:focus label {
   background-color: rgb(180, 179, 177);
-}
+} */
 
-.radiobox {
+/* .radiobox {
   display: none;
-}
+} */
 
 /* End radio mods */
 

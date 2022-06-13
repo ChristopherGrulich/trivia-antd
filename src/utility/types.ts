@@ -1,6 +1,5 @@
 export type AnswerProps = {
         answer: string,
-        answerid: any,
         question: string,
         onClick: any,
         toggled: boolean,

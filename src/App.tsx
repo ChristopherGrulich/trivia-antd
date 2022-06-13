@@ -8,18 +8,29 @@ const { Option } = Select;
 
 export const App: React.FC = () => {
   const [isNew, setIsNew] = React.useState(true);
-  const [apiUrl, setApiUrl] = React.useState(
-    "https://opentdb.com/api.php?amount=5&category=20&difficulty=medium&type=multiple"
-    );
+  const [apiSettings, setApiSettings] = React.useState({
+    category: 22,
+    quantity: 10,
+  })
+
+  const apiURL = `https://opentdb.com/api.php?amount=${apiSettings.quantity}&category=${apiSettings.category}&difficulty=medium&type=multiple`
 
   function isReady() {
     setIsNew(false);
   }
 
-  function apiSetup(value: number) {
-    setApiUrl(
-      `https://opentdb.com/api.php?amount=5&category=${value}&difficulty=medium&type=multiple`
-    );
+  function apiQuantity(value: number) {
+    setApiSettings(prev => ({
+      ...prev,
+      quantity: value,
+    }));
+  }  
+  
+  function apiCategory(value: number) {
+    setApiSettings(prev => ({
+      ...prev,
+      category: value,
+    }));
   }
 
   const tipContent = (value: number) => {
@@ -29,15 +40,16 @@ export const App: React.FC = () => {
   return (
     <div className="container">
       <Header />
-
+      
       {isNew && (
         <div>
           <Welcome />
+          {/* <div className="category-choice"> */}
           <div className="category-choice">
-
+          <Col span={100}>
             <Select 
             id="category" 
-            onChange={apiSetup} 
+            onChange={apiCategory} 
             placeholder="Select a category"
             >
               <Option value="20">Mythology</Option>
@@ -46,9 +58,17 @@ export const App: React.FC = () => {
               <Option value="23">History</Option>
               <Option value="28">Vehicles</Option>
             </Select>
-
-            <Col span={8}>
-            <Slider min={3} max={15} defaultValue={5} tooltipVisible tooltipPlacement="bottom" tipFormatter={tipContent} />
+            </Col>
+            <Col span={30}>
+            <Slider 
+            min={3} 
+            max={15} 
+            defaultValue={5} 
+            tooltipVisible 
+            tooltipPlacement="bottom" 
+            tipFormatter={tipContent} 
+            onChange={apiQuantity}
+            />
             </Col>
           </div>
           <div className="button-box">
@@ -60,7 +80,7 @@ export const App: React.FC = () => {
       )}
 
       {isNew === false 
-      && <Trivia categoryChoice={apiUrl} />}
+      && <Trivia categoryChoice={apiURL} />}
 
       <Footer />
     </div>

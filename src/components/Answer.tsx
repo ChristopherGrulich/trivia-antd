@@ -1,12 +1,11 @@
 import React from "react";
 import { nanoid } from "nanoid";
-import { Radio } from 'antd';
+import { Radio, ConfigProvider } from 'antd';
 import { AnswerProps } from "../utility/types";
 
 export const Answer: React.FC<AnswerProps> = (props: AnswerProps) => {
   const { 
-    answer, 
-    answerid,
+    answer,
     question, 
     onClick, 
     toggled, 
@@ -14,7 +13,12 @@ export const Answer: React.FC<AnswerProps> = (props: AnswerProps) => {
     gameOver 
   } = props;
 
-
+  ConfigProvider.config(
+    {
+    theme: {
+      primaryColor: 'rgb(87, 183, 106)',
+    },
+  });
 
   function style() {
 
@@ -32,34 +36,15 @@ export const Answer: React.FC<AnswerProps> = (props: AnswerProps) => {
   }
 
   return (
-    
-    <div key={nanoid()}>
-      <Radio.Group
-      name={question}
-      style={style()}
-      >
+    // <div key={nanoid()} style={{ color: style() }}>
+    <div key={nanoid()} style={{ color: 'var(--ant-primary-color)' }}>
       <Radio.Button 
       value={answer}
       checked={toggled}
-      onClick={onClick}
+      // onChange={onClick}
       >
       {answer}
       </Radio.Button>
-    </Radio.Group>
-      {/* <div className="radiobox">
-        <input
-          type="radio"
-          id={answerid} // giving form and label their own pair id, allows clicking on label for same radio.
-          value={answer}
-          name={question} // groups answers together
-          onClick={onClick}
-          checked={toggled}
-          readOnly
-        />
-      </div> */}
-      {/* <label htmlFor={answerid} >
-        {answer}
-      </label> */}
       <br></br>
     </div>
   );
