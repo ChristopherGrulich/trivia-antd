@@ -6,14 +6,13 @@ import { AnswerProps } from "../utility/types";
 export const Answer: React.FC<AnswerProps> = (props: AnswerProps) => {
   const { 
     answer,
-    question, 
     onClick, 
     toggled, 
     isCorrect, 
     gameOver 
   } = props;
 
-  ConfigProvider.config(
+  ConfigProvider.config( //WIP
     {
     theme: {
       primaryColor: 'rgb(87, 183, 106)',
@@ -21,7 +20,7 @@ export const Answer: React.FC<AnswerProps> = (props: AnswerProps) => {
   });
 
   function style() {
-
+// WIP
       if (toggled) {
         if (gameOver) {
           if (isCorrect) {
@@ -41,7 +40,7 @@ export const Answer: React.FC<AnswerProps> = (props: AnswerProps) => {
       <Radio.Button 
       value={answer}
       checked={toggled}
-      // onChange={onClick}
+      // onChange={onClick} // WIP
       >
       {answer}
       </Radio.Button>

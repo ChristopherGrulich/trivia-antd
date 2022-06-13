@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Welcome from "./components/Welcome";
 import Trivia from "./components/Trivia";
 import Footer from "./components/Footer";
-import { Col, Row, Select, Slider } from 'antd';
+import { Col, Select, Slider } from 'antd';
 const { Option } = Select;
 
 export const App: React.FC = () => {
