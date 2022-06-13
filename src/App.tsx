@@ -3,16 +3,8 @@ import Header from "./components/Header";
 import Welcome from "./components/Welcome";
 import Trivia from "./components/Trivia";
 import Footer from "./components/Footer";
-import { usePromiseTracker } from "react-promise-tracker";
-import { Select, Slider } from 'antd';
+import { Col, Row, Select, Slider } from 'antd';
 const { Option } = Select;
-
-const LoadingIndicator = () => {
-  const { promiseInProgress } = usePromiseTracker();
-  return (
-    promiseInProgress && <h2 className="loading">Loading, please wait...</h2>
-  );
-};
 
 export const App: React.FC = () => {
   const [isNew, setIsNew] = React.useState(true);
@@ -24,30 +16,29 @@ export const App: React.FC = () => {
     setIsNew(false);
   }
 
-  // type Option = {
-  //   value: string
-  // }
-
   function apiSetup(value: number) {
     setApiUrl(
       `https://opentdb.com/api.php?amount=5&category=${value}&difficulty=medium&type=multiple`
     );
   }
 
+  const tipContent = (value: number) => {
+    return `# of Questions: ${value}`
+  }
+
   return (
     <div className="container">
       <Header />
-      <LoadingIndicator />
+
       {isNew && (
         <div>
           <Welcome />
-          <div>
+          <div className="category-choice">
+
             <Select 
-            showSearch
             id="category" 
             onChange={apiSetup} 
             placeholder="Select a category"
-            optionFilterProp="children"
             >
               <Option value="20">Mythology</Option>
               <Option value="22">Geography</Option>
@@ -55,14 +46,10 @@ export const App: React.FC = () => {
               <Option value="23">History</Option>
               <Option value="28">Vehicles</Option>
             </Select>
-            <Slider min={5} max={15} defaultValue={5} tooltipVisible />
-            {/* <Select id="questionAmnt" onChange={apiSetup}>
-              <Option selected value="5">
-                5
-              </Option>
-              <Option value="10">10</Option>
-              <Option value="15">15</Option>
-            </Select> */}
+
+            <Col span={8}>
+            <Slider min={3} max={15} defaultValue={5} tooltipVisible tooltipPlacement="bottom" tipFormatter={tipContent} />
+            </Col>
           </div>
           <div className="button-box">
             <div className="button" onClick={isReady}>
@@ -72,7 +59,8 @@ export const App: React.FC = () => {
         </div>
       )}
 
-      {isNew === false && <Trivia categoryChoice={apiUrl} />}
+      {isNew === false 
+      && <Trivia categoryChoice={apiUrl} />}
 
       <Footer />
     </div>

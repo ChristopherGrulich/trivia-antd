@@ -8,6 +8,7 @@
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
     "antd": "^4.21.0",
+    "array-shuffle": "^3.0.0",
     "nanoid": "^3.3.4",
     "react": "^18.1.0",
     "react-confetti": "^6.0.1",

@@ -69,17 +69,17 @@ body {
 }
 
 .category-choice {
-  padding-top: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   display: flex;
   justify-content: center;
-  gap: 15px;
 }
 
-.category-choice select {
+/* .category-choice select {
   width: 110px;
   margin: 5px;
   border-radius: 50px;
-}
+} */
 
 .button {
   color: white;
@@ -204,6 +204,7 @@ body {
 
 .loading {
   margin: 20px;
+  text-align: center;
 }
 
 .footer {

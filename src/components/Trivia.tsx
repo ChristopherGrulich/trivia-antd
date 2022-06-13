@@ -4,11 +4,12 @@ import Answer from "./Answer";
 import createStateObj from "../utility/createStateObj";
 import { nanoid } from "nanoid";
 import ReactConfetti from "react-confetti";
-import { trackPromise } from "react-promise-tracker";
+import { trackPromise, usePromiseTracker } from "react-promise-tracker";
 import GameStats from "./GameStats";
 import {CategoryProps} from "../utility/types"
 
 export const Trivia: React.FC<CategoryProps> = (props: CategoryProps) => {
+  const { promiseInProgress } = usePromiseTracker();
   const { categoryChoice } = props;
   const [gameData, setGameData] = React.useState([
     {
@@ -162,6 +163,9 @@ export const Trivia: React.FC<CategoryProps> = (props: CategoryProps) => {
     setGameStage(0); // Reset game
   }
 
+
+
+
   const gameElements = gameData?.map((trivia) => {
     return (
       <div className="game-container" key={nanoid()}>
@@ -202,7 +206,10 @@ export const Trivia: React.FC<CategoryProps> = (props: CategoryProps) => {
 
   return (
     <div className="game-container">
-      {gameStage === 0 && (
+      {promiseInProgress && 
+      <h2 className="loading">Loading, please wait...</h2>}
+
+      {!promiseInProgress && gameStage === 0 && (
         <div>
           {gameElements}
           <div className="button-box">

@@ -1,9 +1,9 @@
-import shuffle from "./shuffle";
+import arrayShuffle from "array-shuffle";
 import { nanoid } from "nanoid";
 
 export default function createStateObj(item, fixEscChars) {
 
-  const answersRandom = shuffle([
+  const answersRandom = arrayShuffle([
     item.correct_answer,
     ...item.incorrect_answers,
   ]);
